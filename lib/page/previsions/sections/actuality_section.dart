@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:giz/const/strings.dart';
+import 'package:giz/model/Actuality.dart';
 
 class ActualitySection extends StatelessWidget {
   @override
@@ -32,10 +33,7 @@ class ActualitySection extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              ActualityCard(),
-              ActualityCard(),
-              ActualityCard(),
-              ActualityCard(),
+              ActualityCard(Actuality())
             ],
           ),
         ),
@@ -46,7 +44,12 @@ class ActualitySection extends StatelessWidget {
 }
 
 class ActualityCard extends StatelessWidget {
-  const ActualityCard({Key key}) : super(key: key);
+
+  Actuality actuality;
+
+  ActualityCard();
+
+  ActualityCard.build(this.actuality);
 
   @override
   Widget build(BuildContext context) {

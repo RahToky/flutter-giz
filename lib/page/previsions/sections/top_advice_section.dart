@@ -26,11 +26,11 @@ class TopAdviceSection extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'Voir tout',
-                    style: TextStyle(color: Colors.teal, fontSize: 18),
+                    style: TextStyle(color: primaryColor, fontSize: 18),
                   ),
                 ),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.teal[700]),
+                  border: Border.all(color: Colors.teal,width: 2),
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                 ),
               ),

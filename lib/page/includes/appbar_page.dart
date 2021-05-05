@@ -7,12 +7,11 @@ class MyAppBar {
 
   static Widget create() {
     return AppBar(
+      elevation: 0,
       centerTitle: true,
       leading: Icon(Icons.menu),
-      title: Padding(
-        padding: EdgeInsets.all(60),
-        child: Image.asset('assets/images/logo.png'),
-      ),
+      title: Image.asset('assets/images/logo.png',height: 50,),
+
       actions: <Widget>[
         IconButton(
           icon: Icon(

@@ -11,7 +11,7 @@ class MyAppBar {
       leading: Icon(Icons.menu),
       title: Padding(
         padding: EdgeInsets.all(60),
-        child: Image.asset('images/logo.png'),
+        child: Image.asset('assets/images/logo.png'),
       ),
       actions: <Widget>[
         IconButton(

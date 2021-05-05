@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MapSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Image.asset('images/mada.png', height: 380, fit: BoxFit.fill);
+    return Image.asset('assets/images/mada.png', height: 380, fit: BoxFit.fill);
   }
 }
 

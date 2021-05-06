@@ -13,8 +13,7 @@ class ActualitySection extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 40),
-          padding: EdgeInsets.only(left: 15, right: 15),
+          padding: EdgeInsets.only(left: 15, right: 15,top:40),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.teal,
-        accentColor: Colors.black
+        accentColor: Colors.black,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: DefaultTabController(
         length: 4,

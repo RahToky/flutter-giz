@@ -14,7 +14,6 @@ class PrevisionPage extends StatelessWidget {
       child: Column(
         children: [
           Search(),
-          SizedBox(height: 8),
           MapSection(),
           ActualitySection(),
           TopAdviceSection(),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MapSection extends StatefulWidget {
@@ -36,6 +37,7 @@ class _MapSectionState extends State<MapSection> {
       height: (screenHeight * 0.62) + 40,
       child: Stack(
         children: [
+          //MAP IMAGE
           Positioned(
             child: Padding(
               padding:
@@ -53,6 +55,8 @@ class _MapSectionState extends State<MapSection> {
               ),
             ),
           ),
+
+          //DATE AND PAGE INDICATOR
           Positioned(
             left: 0,
             right: 0,
@@ -62,82 +66,98 @@ class _MapSectionState extends State<MapSection> {
               children: [_dateWidget(), SizedBox(height: 5), _pageIndicator()],
             )),
           ),
+
+          // MORNING AFTERNOON BUTTONS
           Positioned(
             top: 50,
             left: 18,
-            child: Column(
-              children: [
-                MaterialButton(
-                  height: 30,
-                  minWidth: 80,
-                  animationDuration: Duration(milliseconds: 400),
-                  elevation: 0,
-                  onPressed: () {},
-                  child: Text('Matin', style: TextStyle(fontSize: 11)),
-                  color: primaryColor,
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
+            child: Container(
+              height: 80,
+              color: Colors.red,
+              child: Column(
+                children: [
+                  MaterialButton(
+                    height: 30,
+                    minWidth: 80,
+                    elevation: 0,
+                    onPressed: () {},
+                    child: Text('Matin', style: TextStyle(fontSize: 11)),
+                    color: primaryColor,
+                    textColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
                   ),
-                ),
-                MaterialButton(
-                  height: 30,
-                  minWidth: 80,
-                  animationDuration: Duration(milliseconds: 400),
-                  elevation: 0,
-                  onPressed: () {},
-                  child: Text('Après-midi', style: TextStyle(fontSize: 11)),
-                  color: Colors.white,
-                  textColor: Colors.grey[600],
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    side: BorderSide(color: Colors.grey[400]),
+                  Expanded(child: Container()),
+                  MaterialButton(
+                    height: 30,
+                    minWidth: 80,
+                    elevation: 0,
+                    onPressed: () {},
+                    child: Text('Après-midi', style: TextStyle(fontSize: 11)),
+                    color: Colors.white,
+                    textColor: Colors.grey[600],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                      side: BorderSide(color: Colors.grey[400]),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-
-
           ),
+
+          //IC TERRESTRIAL
           Positioned(
-              top: 135,
+              top: 145,
               left: 15,
               child: Image.asset(
                 'assets/images/ic_terrestre.png',
                 width: 42,
               )),
+
+          // IC MARINE
           Positioned(
-              top: 180,
+              top: 190,
               left: 17,
               child: Image.asset(
                 'assets/images/ic_vague.png',
                 width: 36,
               )),
+
+          //IC ALERT
           Positioned(
-              top: 10,
-              right: -4,
-              child: AnimatedContainer(
-                  width: _isErrorShown ? 220 : 40,
-                  height: 32,
-                  duration: Duration(milliseconds: 400),
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(5)),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.warning_amber_rounded),
-                        onPressed: () {
-                          _isErrorShown = !_isErrorShown;
-                          _showError();
-                        },
-                        color: Colors.white,
-                        padding: EdgeInsets.only(bottom: 2),
-                      ),
-                      Text("Il pleut, restez chez vous!",
-                          style: TextStyle(color: Colors.white, fontSize: 12))
-                    ],
-                  ))),
+            top: 10,
+            right: 0,
+            child: AnimatedContainer(
+              width: _isErrorShown ? 220 : 40,
+              height: 32,
+              duration: Duration(milliseconds: 400),
+              decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(6),
+                      bottomLeft: Radius.circular(6))),
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.warning_amber_rounded),
+                    onPressed: () {
+                      _isErrorShown = !_isErrorShown;
+                      _showError();
+                    },
+                    color: Colors.white,
+                    padding: EdgeInsets.only(bottom: 2),
+                  ),
+                  Flexible(
+                    child: Text("Il pleut, restez chez vous!",
+                        softWrap: false,
+                        style: TextStyle(color: Colors.white, fontSize: 12)),
+                  )
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

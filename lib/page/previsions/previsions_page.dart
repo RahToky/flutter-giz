@@ -1,5 +1,8 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:giz/const/strings.dart';
 import 'package:giz/page/previsions/sections/actuality_section.dart';
 import 'package:giz/page/previsions/sections/top_advice_section.dart';
 import 'package:giz/page/previsions/sections/trend_section.dart';
@@ -10,6 +13,7 @@ import 'sections/search_section.dart';
 class PrevisionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -18,13 +22,13 @@ class PrevisionPage extends StatelessWidget {
           ActualitySection(),
           TopAdviceSection(),
           TrendSection(),
-          SizedBox(height: 20,)
+          SizedBox(
+            height: 20,
+          )
         ],
       ),
     );
   }
 }
-
-
 
 

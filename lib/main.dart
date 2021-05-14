@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         child: Scaffold(
           appBar: MyAppBar.create(),
           body: TabBarView(
+            physics: NeverScrollableScrollPhysics(),
             children: [
               PrevisionPage(),
               ActualityPage(),

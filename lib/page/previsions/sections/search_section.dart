@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../const/strings.dart';
+
 class Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -7,9 +9,16 @@ class Search extends StatelessWidget {
     return Container(
       width: size.width,
       height: 68,
-      color: Colors.teal,
       child: Stack(
         children: [
+          Positioned(
+            top: 0,
+            child: Container(
+              color: Colors.teal,
+              width: size.width,
+              height: 65,
+            ),
+          ),
           Positioned(
             top: 0,
             child: Image.asset(
@@ -18,6 +27,8 @@ class Search extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
+
+          /** SEARCH SECTION */
           Positioned(
             top: 0,
             left: 0,
@@ -30,8 +41,7 @@ class Search extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
                   boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey, blurRadius: 3, spreadRadius: 0.1),
+                    BoxShadow(color: Colors.grey, blurRadius: 3, spreadRadius: 0.1)
                   ],
                 ),
                 child: Row(
@@ -44,14 +54,21 @@ class Search extends StatelessWidget {
                         maxLines: 1,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintStyle: TextStyle(fontStyle: FontStyle.italic),
-                          hintText: 'Rechercher une ville, une région...',
-                          contentPadding:EdgeInsets.symmetric(vertical: 11,horizontal: 15),
+                          hintStyle: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              color: Colors.grey,
+                              fontSize: 14),
+                          hintText: Strings.SEARCH_HINT,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 15),
                           isDense: true,
                         ),
                       ),
                     ),
-                    Image.asset('assets/images/ic_search.png',height: 20,fit: BoxFit.fitHeight,),
+                    Image.asset(
+                      'assets/images/ic_search.png',
+                      height: 16,
+                      fit: BoxFit.fitHeight,
+                    ),
                     SizedBox(
                       width: 10,
                     ),

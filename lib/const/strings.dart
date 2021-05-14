@@ -7,4 +7,5 @@ class Strings{
   static const TOP_5_ADVICES_CATEGORY = 'Top 5 des catégories conseils';
   static const TRENDS = 'Tendances';
   static const FOLLOW_ACTU_ADVICES = 'Suivez les actualités et conseils les plus lus.';
+  static const SEARCH_HINT = 'Rechercher une ville, une région...';
 }

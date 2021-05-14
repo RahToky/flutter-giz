@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:giz/const/strings.dart';
+import 'package:giz/model/Trend.dart';
+import 'package:giz/service/dataProvider.dart';
 
 class TrendSection extends StatelessWidget {
 
-  final trends = [
-    {"category":"ÉLEVAGE","subtitle":"CONSEIL","title":"Quels instruments pour un élevage durable et rémunérative"},
-    {"category":"PÊCHE","subtitle":"ACTUALITÉ","title":"Les facteurs clés de la météo marine pour les pêcheurs du sud"},
-    {"category":"MÉTÉO","subtitle":"CONSEIL","title":"Découvrez la météo lors de la fête nationale de Madagascar liberale"}
-  ];
+  final trends = DataProvider.getTrends();
 
 
   @override
@@ -45,7 +43,7 @@ class TrendSection extends StatelessWidget {
             SizedBox(height: 10),
             Column(
               children: trends.map((trend){
-                return _trendWidget(size, trend['title'], trend['subtitle'], trend['category']);
+                return _trendWidget(size, trend);
               }).toList(),
             )
           ],
@@ -55,14 +53,14 @@ class TrendSection extends StatelessWidget {
   }
 }
 
-Widget _trendWidget(Size size, title, subtitle, category) => Padding(
+Widget _trendWidget(Size size, Trend trend) => Padding(
   padding: const EdgeInsets.only(bottom: 8),
   child:   Container(
     height: 110,
     width: size.width * 0.9,
     decoration: BoxDecoration(
       color: Colors.white,
-      borderRadius: BorderRadius.circular(4),
+      borderRadius: BorderRadius.circular(6),
       boxShadow: [
         BoxShadow(color: Colors.grey, blurRadius: 0.2, spreadRadius: 0.01),
       ],
@@ -71,7 +69,7 @@ Widget _trendWidget(Size size, title, subtitle, category) => Padding(
       padding: EdgeInsets.all(8),
       child: Row(
         children: [
-          Image.asset('assets/images/trend_1.png'),
+          Image.asset('${trend.img}'),
           SizedBox(
             width: 8,
           ),
@@ -82,19 +80,21 @@ Widget _trendWidget(Size size, title, subtitle, category) => Padding(
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    MaterialButton(
+                    TextButton(
                       onPressed: () {},
-                      child: Text(category,style: TextStyle(fontSize: 12)),
-                      elevation: 0,
-                      color: Colors.amber,
+                      child: Text(trend.category,style: TextStyle(fontSize: 12)),
+                      style: TextButton.styleFrom(
+                        backgroundColor: trend.categoryColor,
+                        primary: trend.categoryTextColor ?? Colors.black87,
+                      ),
                     ),
-                    Text(subtitle,style: TextStyle(fontSize: 12,color: Colors.grey[600]))
+                    Text(trend.subtitle,style: TextStyle(fontSize: 12,color: Colors.grey[600]))
                   ],
                 ),
                 Expanded(
                   child: Container(
                     margin: EdgeInsets.only(top: 5),
-                    child: Text(title,
+                    child: Text(trend.title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: TextStyle(
@@ -106,9 +106,9 @@ Widget _trendWidget(Size size, title, subtitle, category) => Padding(
                 Row(
                   children: [
                     Text('Par ',style: TextStyle(color:Colors.grey,fontSize: 12)),
-                    Text('MAEP',style: TextStyle(color:Colors.teal,fontSize: 12)),
+                    Text('${trend.author}',style: TextStyle(color:Colors.teal,fontSize: 12)),
                     Text(' | ',style: TextStyle(color:Colors.grey[200],fontSize: 12)),
-                    Text('07/09/2020',style: TextStyle(color:Colors.grey,fontSize: 12)),
+                    Text('${trend.date}',style: TextStyle(color:Colors.grey,fontSize: 12)),
                   ],
                 ),
               ],

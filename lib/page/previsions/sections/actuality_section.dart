@@ -2,18 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:giz/const/strings.dart';
 import 'package:giz/model/Actuality.dart';
-import 'package:giz/service/ActualityService.dart';
+import 'package:giz/service/dataProvider.dart';
 
 class ActualitySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
-    final actualityList = ActualityService.getActualities();
+    final actualityList = DataProvider.getActualities();
 
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.only(left: 15, right: 15,top:40),
+          padding: EdgeInsets.only(left: 15, right: 15, top: 40),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -55,63 +55,75 @@ class ActualityCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 320,
-      height: 290,
+      height: 280,
       margin: EdgeInsets.only(left: 10),
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
+            borderRadius: BorderRadius.circular(6.0),
+            side: BorderSide(color: Colors.grey[200], width: 0.8)),
         color: Colors.white,
-        elevation: 1,
+        elevation: 0,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Stack(children: [
-              Image.asset(
-                actuality.img ?? "assets/images/default.png",
-                width: 320,
-                height: 180,
-                fit: BoxFit.fill,
-              ),
-              Positioned(
-                top: 15,
-                left: 15,
-                child: Container(
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        const BorderRadius.all(const Radius.circular(3)),
-                    color: actuality.categoryColor,
-                  ),
-                  child: Text(
-                    actuality.category,
-                    style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 12,
-                        color: Colors.white),
-                  ),
-                ),
-              ),
-            ]),
             Container(
-              padding: EdgeInsets.only(left: 15, top: 10),
-              child: Column(children: [
-                Text(actuality.title,
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 19)),
-                SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text('Par ', style: TextStyle(color: Colors.black54)),
-                    Text('${actuality.author} ',
-                        style:
-                            TextStyle(color: Theme.of(context).primaryColor)),
-                    Text('| ', style: TextStyle(color: Colors.black54)),
-                    Text('${actuality.date}',
-                        style: TextStyle(color: Colors.black54)),
-                  ],
+              height: 180,
+              child: Stack(children: [
+                Image.asset(
+                  actuality.img ?? "assets/images/default.png",
+                  width: 320,
+                  fit: BoxFit.fill,
+                ),
+                Positioned(
+                  top: 15,
+                  left: 15,
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(const Radius.circular(3)),
+                      color: actuality.categoryColor,
+                    ),
+                    child: Text(
+                      actuality.category,
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 17,
+                          color: Colors.white),
+                    ),
+                  ),
                 ),
               ]),
+            ),
+
+            Expanded(
+              child: Container(
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top:10,left: 15, right: 15,
+                      child: Text(actuality.title,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 22)),
+                    ),
+                    Positioned(
+                      left:15,
+                      bottom: 17,
+                      child: Row(
+                        children: [
+                          Text('Par ', style: TextStyle(color: Colors.black54)),
+                          Text('${actuality.author} ',
+                              style:
+                              TextStyle(color: Theme.of(context).primaryColor)),
+                          Text('| ', style: TextStyle(color: Colors.black54)),
+                          Text('${actuality.date}',
+                                style: TextStyle(color: Colors.black54)),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
           ],
         ),
